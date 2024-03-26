@@ -3,10 +3,7 @@ package com.kitzbuhel.IOService.controllers;
 import com.kitzbuhel.IOService.entities.Todo;
 import com.kitzbuhel.IOService.repositories.TodosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +16,11 @@ public class TodosController {
     @GetMapping("/getByEmail")
     public List<Todo> getTodosByEmail(@RequestBody String email) {
         return todosRepository.findAllByEmail(email);
+    }
+
+    @PostMapping("/addTodo")
+    public Todo addTodo(@RequestBody String description, @RequestBody String email) {
+        return todosRepository.save(new Todo(description, email));
     }
 
 }

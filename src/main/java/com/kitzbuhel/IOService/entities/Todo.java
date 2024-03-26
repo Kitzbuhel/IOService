@@ -2,6 +2,7 @@ package com.kitzbuhel.IOService.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "todos")
@@ -21,13 +22,12 @@ public class Todo {
 
     @Column(name = "done")
     @Getter
-    private Boolean done;
+    @Setter
+    private Boolean done = false;
 
-    public Todo(Long id, String email, String description, Boolean done) {
-        this.id = id;
+    public Todo(String email, String description) {
         this.email = email;
         this.description = description;
-        this.done = done;
     }
 
     public Todo() {
