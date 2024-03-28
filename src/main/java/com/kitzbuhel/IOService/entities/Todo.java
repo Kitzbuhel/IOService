@@ -14,10 +14,12 @@ public class Todo {
 
     @Column(name = "email")
     @Getter
+    @Setter
     private String email;
 
     @Column(name = "description")
     @Getter
+    @Setter
     private String description;
 
     @Column(name = "done")

@@ -11,4 +11,14 @@ public interface TodosRepository extends JpaRepository<Todo, Long> {
     (value = "SELECT * FROM todos t WHERE t.email = ?1",
      nativeQuery = true)
     List<Todo> findAllByEmail(String email);
+
+    @Query
+    (value = "SELECT * FROM todos t WHERE t.email = ?1 AND t.done = true",
+     nativeQuery = true)
+    List<Todo> findCompletedByEmail(String email);
+
+    @Query
+    (value = "SELECT * FROM todos t WHERE t.email = ?1 AND t.done = false",
+     nativeQuery = true)
+    List<Todo> findNotCompletedByEmail(String email);
 }
