@@ -1,32 +1,10 @@
-name: Java CI with Maven
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+on: [push, pull_request]
+name: lint
 jobs:
-  build:
-
+  ecs:
+    name: Easy Coding Standard
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 21
-      uses: actions/setup-java@v3
-      with:
-        java-version: '21'
-        distribution: 'corretto'
-        cache: maven
-    - name: Start database
-      run: ./launch_db.sh
-    - name: Build with Maven
-      run: mvn clean install
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: java-app
-        path: ‘${{ github.workspace }}/target/*.jar’
-    - name: Run tests
-      run: mvn test
+    - name: Easy Coding Standard Action
+      uses: zingimmick/ecs-action@0.0.4
