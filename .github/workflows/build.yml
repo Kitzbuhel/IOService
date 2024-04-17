@@ -23,10 +23,5 @@ jobs:
       run: docker container run -d --name todos_db -p 5433:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=todos postgres
     - name: Build with Maven
       run: mvn clean install
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: java-app
-        path: ‘${{ github.workspace }}/target/*.jar’
     - name: Run tests
       run: mvn test
